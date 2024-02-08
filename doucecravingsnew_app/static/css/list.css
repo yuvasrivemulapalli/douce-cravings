@@ -1,0 +1,259 @@
+
+/*-------List of Items--------*/
+.title-sort {
+  display: flex;
+  justify-content: center;
+}
+/*-------List of Items Title--------*/
+.ice-cream-title {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+/*-------List of Items Sort By Dropdown CSS--------*/
+.sort-by {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.sort-by select {
+  cursor: pointer;
+}
+/*------- Styling for the "Add an Item" button ---------*/
+.add-an-item {
+    background-color: #abac7f;
+  color: #373d20;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  margin-left: 3rem;
+}
+
+/*-------CSS for List of Items grid view-------*/
+.grid-container {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+  padding: 20px;
+  font-size: 10px;
+  text-align: center;
+}
+
+/*--------grid-img----------*/
+.grid-container img {
+  width: 200px;
+  height: 250px;
+}
+
+/*------CSS to represent boxes in polaroid--------*/
+.card {
+  width: fit-content;
+  background-color: #373d20;
+  margin: 5%;
+  /*border: 1px solid;*/
+  cursor: pointer;
+  box-shadow: 5px 5px 10px 15px rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card-txt {
+  text-align: center;
+  padding: 3px;
+  font-size: medium;
+}
+
+.grid-item a {
+  text-decoration: none;
+  color: #abac7f;
+  font-weight: bold;
+}
+
+/*--------grid-filter--------*/
+.items-list-filter {
+  display: flex;
+  justify-content: center;
+}
+
+/* CSS Styling for add an item button */
+.add-an-item {
+    background-color: #abac7f;
+  color: #373d20;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+  margin-left: 3rem;
+}
+
+
+/*--------Toggle function for edit form------*/
+.hidden{
+    display: none;
+}
+/*----Edit Item icon-----*/
+.fa-pen-to-square{
+    color: #373d20;
+}
+/*---------Edit and delete button div-------*/
+.edit-delete-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-item {
+    background-color: #abac7f;
+    color: #373d20;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.edit-delete-buttons input[type="submit"] {
+    background-color: #abac7f;
+    color: #373d20;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-delete-buttons input[type="submit"]:hover {
+    background-color: #C22837FF;
+    color: white;
+}
+
+.edit-form-title-price {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.edit-form-title-price input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #373d20;
+    border-radius: 3px;
+}
+
+.edit-form-title-price button {
+    background-color: #abac7f;
+    color: #373d20;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.edit-form-title-price button:hover {
+    background-color: #373d20;
+    color: #abac7f;
+}
+
+/*------------Edit Item pop up form styling--------*/
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background-color: #abac7f;
+    border: 1px solid #373d20;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.popup-form h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.popup-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form .form-group {
+    margin-bottom: 10px;
+}
+
+.popup-form label {
+    font-weight: bold;
+}
+
+.popup-form input[type="text"],
+.popup-form input[type="number"],
+.popup-form input[type="file"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #373d20;
+    border-radius: 3px;
+}
+
+.popup-form input[type="submit"] {
+    background-color: #373d20;
+    color: #abac7f;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.popup-form input[type="submit"]:hover {
+    background-color: #abac7f;
+    color: #373d20;
+}
+
+
+.popup-form .form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messages{
+    color: white;
+}
+
+ul.messages {
+    font-weight: bold;
+    padding: 1em;
+}
+
+ul.messages li.success{
+    background-color: lightgreen;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+ul.messages li.warning{
+    background-color: red;
+    color: white;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+ul.messages li.info{
+    background-color: lightblue;
+    color : white;
+    padding: 1em;
+    margin: 0.25em;
+}

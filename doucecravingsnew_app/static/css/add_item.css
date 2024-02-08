@@ -1,0 +1,53 @@
+
+.adding_item {
+    margin: 2rem;
+    color: #373d20;
+}
+
+.adding_item h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #373d20;
+}
+
+.adding_item form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.adding_item label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.adding_item input[type="text"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #373d20;
+    border-radius: 5px;
+    color: #373d20;
+}
+
+.adding_item input[type="file"] {
+    cursor: pointer;
+}
+
+.add-item-button {
+    width: 100%;
+    padding: 10px;
+    background: #373d20;
+    color: #abac7f;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.form-buttons {
+    text-align: center;
+}

@@ -1,0 +1,170 @@
+/*-----------Header-------------*/
+
+header {
+  height: 80px;
+  background-color: #373d20;
+  color: #abac7f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.fa {
+  color: #abac7f;
+}
+
+.fa-user {
+  color: #abac7f;
+}
+
+.logo-title {
+  display: flex;
+  cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.logo-title img {
+  width: 80px;
+  height: 80px;
+}
+
+.title {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/*-----------Main Hero image, login, signup css -----*/
+.top-main {
+  display: flex;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 80vh;
+  justify-content: space-evenly;
+}
+
+.vertical-catlog {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-catlog img {
+  width: 180px;
+  height: 140px;
+}
+
+.button {
+  display: block;
+  width: 100px;
+  height: 25px;
+  background: #373d20;
+  padding: 10px;
+  text-align: center;
+  color: #abac7f;
+  line-height: 25px;
+  text-decoration: none;
+}
+
+.Main-caption-login-signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #abac7f;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #373d20;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/*--------Main Categories------*/
+
+.box {
+  display: flex;
+}
+
+.main-cat img {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.main-cat {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*-------Footer--------*/
+footer {
+  height: 50px;
+  background-color: #373d20;
+  color: #abac7f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: auto;
+}
+
+.copyrights {
+  display: flex;
+  flex-direction: column;
+}
+
+.links a {
+  color: #abac7f;
+  text-decoration: none;
+  margin: 0;
+  margin-left: 2rem;
+}
+
+.social-media-icons-follow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.social-media-icons-follow a {
+  color: #abac7f;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.social-media-icons-follow i {
+  align-items: center;
+}
+
+.social-media-icons i {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: large;
+  cursor: pointer;
+}
