@@ -1,0 +1,90 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+{% block page-title %} List of Items {% endblock %}
+{% block content %}
+    <!--List of items-->
+    <br>
+    <div class="title-sort">
+        <h1 class="ice-cream-title">Ice Creams</h1>
+        <div class="sort-by">
+            <form id="sort-form" method="get" action="{% url 'doucecravingsnew_app:sort-items' %}">
+                <label for="sort-by"><strong>Sort By:</strong></label>
+                <select id="sort-by" name="sort_option" onchange="submitSortForm()">
+                    <option value="latest">Latest</option>
+                    <option value="price-low-to-high">Price: Low to High</option>
+                    <option value="price-high-to-low">Price: High to Low</option>
+                    <option value="best-seller">Best Sellers</option>
+                    <option value="reviews">Reviews</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <!--This Add Item view is only for Admin User-->
+    {% if request.session.role == "Admin" %}
+        <button class="add-an-item" id="add-item-popup"><a href="{% url 'doucecravingsnew_app:add_item' %}"><i
+                class="fa-solid fa-plus" style="color: #6f7680;"></i> Add an
+            Item
+        </a>
+        </button>
+    {% endif %}
+
+    <!--Grid view for all the list of Items using grids concept-->
+    <div class="items-list-filter">
+        <div class="grid-container">
+            {% if items %}
+                {% for item in items %}
+                    <div class="grid-item">
+                        <a href="{% url 'doucecravingsnew_app:item_details' item.id %}">
+                            <div class="card">
+                                <img src="{% static 'images/ice-creams/' %}{{ item.image }}" alt="{{ item.title }}">
+                                <div class="card-txt">
+                                    <p>{{ item.title }}</p>
+                                    <p>${{ item.price }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        <!--This Edit and Delete View is only for Admin user-->
+                        {% if request.session.role == "Admin" %}
+                            <div class="edit-delete-buttons">
+                                <!--Toggle the edit form when clicked on edit button-->
+
+                                <!--view to delete an item-->
+
+                                <form method="post" action="{% url 'doucecravingsnew_app:delete_view' item.id %}"
+                                      onsubmit="return confirmDelete();">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </div>
+                            <!--Edit form to edit the Item details-->
+                            <div id="edit-form-{{ item.id }}" class="edit-form hidden">
+                                <form class="edit-form-title-price" method="post"
+                                      action="{% url 'doucecravingsnew_app:edit_view' item.id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <div class="form-text">
+                                        <div class="form-input">
+                                            <input type="text" name="new_name" placeholder="New Title Name"
+                                                   value="{{ item.title }}">
+                                            <input type="text" name="new_price" placeholder="New Price for Item"
+                                                   value="{{ item.price }}">
+                                        </div>
+                                        <button type="submit" onclick="untoggleEditForm('{{ item.id }}')">Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="items-empty-msg">
+                    <h4>There are no products currently</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/list.js" %}"></script>
+{% endblock %}

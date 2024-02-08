@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/list.css" %}">
+    <link rel="stylesheet" href="{% static "css/add_item.css" %}">
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link rel="stylesheet" href="{% static "css/item-details.css" %}">
+    <link rel="stylesheet" href="{% static "css/review.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_comment.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <title>{% block page-title %} {% endblock %}</title>
+</head>
+<!--Using inline style for body to override the margin applied for the body by default-->
+
+<body style="margin: 0px !important;">
+<!--HEADER HTML CODE-->
+
+<!--All the images used in this page are from 'https://www.shopify.com/stock-photos/dessert' website-->
+
+<header>
+    <div class="logo-title">
+        <img src="{% static "images/logo.png" %}" alt="logo">
+        <h1 class="title">Douce Cravings</h1>
+    </div>
+    <div class="search-bar">
+        <form action="" method="get">
+            <input class="search-bar" type="text" placeholder="Search for any dessert..." name="search-input"
+                   id="search-input">
+            <button class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <!--Icons and buttons in header-->
+    <div class="buttons">
+        {% if request.session.username %}
+            <h3>Hello! <a href="{% url 'users:profile' request.session.username %}">{{ request.session.username }}</a>
+            </h3>
+        {% endif %}
+        <div class="profile-cart-wishlist">
+            {% if request.session.role == 'Admin' %}
+                <a href="{% url 'users:users_edit' %}"><i class="fas fa-user-edit"></i></a>
+
+            {% else %}
+                <a href="{% url 'users:users_edit' %}">User Profiles</a>
+
+
+            {% endif %}
+
+
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <a href="{% url 'doucecravingsnew_app:main' %}"><i class="fa-solid fa-user"></i></a>
+        </div>
+        <div class="logout">
+            {% if request.session.username %}
+                <a href="{% url "users:logout" %}">Log Out </a>
+            {% else %}
+                <a href="{% url "doucecravingsnew_app:main" %}">Log In </a>
+
+            {% endif %}
+        </div>
+    </div>
+
+
+</header>
+<!--Horizantal Nav bar  code-->
+<div class="nav-bar-header">
+    <ul>
+        <li><a href="{% url 'doucecravingsnew_app:home' %}">Home</a></li>
+        <li><a href="{% url 'doucecravingsnew_app:list_of_items' %}">Cookies</a></li>
+        <li><a href="{% url 'doucecravingsnew_app:list_of_items' %}">Brownies</a></li>
+        <li><a href="{% url 'doucecravingsnew_app:list_of_items' %}">Ice Creams</a></li>
+        <li><a href="{% url 'doucecravingsnew_app:list_of_items' %}">Cakes</a></li>
+    </ul>
+</div>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% block content %}
+
+{% endblock %}
+
+{% block sidebar %}
+    <div class="padding">
+    <p>Welcome to your dashboard, <strong>{{ request.session.username }}</strong></p>
+    </div>
+    {% include "actions/action/feed.html" %}
+{% endblock %}
+
+<!--FOOTER HTML CODE-->
+<footer>
+    <div class="copyrights">
+        <span>&copy; Copyrights</span>
+        <span>2023 douchecravings</span>
+    </div>
+    <div class="links">
+        <a href="{% url 'doucecravingsnew_app:home' %}">About Us</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Contact Us</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Careers</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Privacy Policy</a>
+    </div>
+    <div class="social-media-icons-follow">
+        <a href="{% url 'doucecravingsnew_app:home' %}">Follow Us on</a>
+        <div class="social-media-icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </div>
+</footer>
+<script src="{% static "js/index.js" %}"></script>
+</body>
+
+</html>

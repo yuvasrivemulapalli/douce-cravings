@@ -1,0 +1,27 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+
+<title>Users Profile Pages</title>
+<link rel="stylesheet" href="{% static "css/index.css"%}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% block content %}
+
+    <div class = "user-profiles">
+    <div>
+    <h2> All User Profiles </h2>
+    </div>
+    <div class = "profile-list-div">
+    <ul class = "profile-list-ul">
+        {% for user_name in users_names %}
+            {% if request.session.role == 'Admin' %}
+            <a href="{% url "users:profile" user_name %}"><li class = "profile-list">{{ user_name }}</li></a>
+                {% else %}
+                <a href="{% url "users:user_details" user_name %}"><li class = "profile-list">{{ user_name }}</li></a>
+
+            {% endif %}
+        {% endfor %}
+    </ul>
+    </div>
+    </div>
+{% endblock %}

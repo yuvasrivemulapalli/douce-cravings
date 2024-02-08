@@ -1,0 +1,21 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+
+<title>Users Details</title>
+<link rel="stylesheet" href="{% static "css/index.css"%}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% block content %}
+
+    <div class="user-details">
+        <h2>User Details</h2>
+        {% if user %}
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Firstname</strong> {{ user.first_name }}</p>
+            <p><strong>Lastname:</strong> {{ user.last_name }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+        {% else %}
+            <p>User not found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

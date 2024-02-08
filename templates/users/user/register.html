@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/login_page.css" %}">
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    <link rel="stylesheet" href="{% static "css/form.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <title>Login Page</title>
+</head>
+
+<body>
+<!--HEADER HTML CODE-->
+
+<!--All the images used in this page are from 'https://www.shopify.com/stock-photos/dessert' website-->
+<!--Header for login page. I'm not importing base.html here as it is different from rest of the pages-->
+<header>
+    <div class="logo-title">
+        <img src="{% static "images/logo.png" %}" alt="logo">
+        <h1 class="title">Douce Cravings</h1>
+    </div>
+    <div class="buttons">
+        <div class="profile-cart-wishlist">
+            <i class="fa-solid fa-heart"></i>
+            <i class="fa-solid fa-cart-shopping"></i>
+            <a href="{% url 'doucecravingsnew_app:main' %}"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </div>
+</header>
+
+
+<div class="login">
+    <h2>Register</h2>
+    <!--Login Form for users-->
+    <form id="login-box" action="{% url "users:register" %}" method="POST">
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class="error">Registration failed. Please correct the errors below.</div>
+        {% endif %}
+        {{ form.as_p }}
+        <input type="submit" name="submit" value="Register">
+    </form>
+</div>
+
+
+<!--FOOTER HTML CODE-->
+<footer>
+    <div class="copyrights">
+        <span>&copy; Copyrights</span>
+        <span>2023 doucecravings</span>
+    </div>
+    <div class="links">
+        <a href="{% url 'doucecravingsnew_app:home' %}">About Us</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Contact Us</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Careers</a>
+        <a href="{% url 'doucecravingsnew_app:home' %}">Privacy Policy</a>
+    </div>
+    <div class="social-media-icons-follow">
+        <a href="{% url 'doucecravingsnew_app:home' %}">Follow Us on</a>
+        <div class="social-media-icons">
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-instagram"></i>
+        </div>
+    </div>
+</footer>
+<script src="{% static "js/index.js" %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+{% block page-title %} Item Details {% endblock %}
+{% block content %}
+    <!--Detail view page for a single Item-->
+    <div class="item-page-reviews">
+        <div class="item-page">
+            <div class="item-title-pic">
+                <h2>{{ item_details.title }}</h2>
+                <img src="{% static 'images/ice-creams/' %}{{ item_details.image }}" alt="{{ item_details.title }}">
+                <i>Created by {{ item_details.author }} at {{ item_details.date_modified }}</i>
+                <div class="add-to-cart-wishlist">
+                    <button class="button cart-button"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+                    <div class="added-success">Added to Cart Successfully!</div>
+                </div>
+            </div>
+            <div class="item-making-price-quantity">
+                <p><b>Description:</b> {{ item_details.description }} </p>
+                <span class="anchor"><b>Toppings</b></span><br>
+                <div class="dropdown-check-list">
+                    <form>
+                        {% for topnames in item_details.toppings %}
+                            <div class="form-group">
+                                <input type="checkbox" id={{ topnames }}>
+                                <label for={{ topnames }}>{{ topnames }}</label>
+                            </div>
+                        {% endfor %}
+                    </form>
+                </div>
+                <!--Grid for Price quantity and other details-->
+                <div class="price-quantity-other-grid">
+                    <b class="price-quantity-other-grid-item">Price : ${{ item_details.price }}</b>
+                    <div class="product">
+                        <div class="quantity">
+                            <button class="decrement">-</button>
+                            <span class="count">1</span>
+                            <button class="increment">+</button>
+                        </div>
+                    </div>
+                    <b class="price-quantity-other-grid-item other"><a href="{% url 'doucecravingsnew_app:review' %}">Write
+                        a
+                        review</a></b>
+                    <b class="price-quantity-other-grid-item other"><a href="">Ingredients</a></b>
+                    <b class="price-quantity-other-grid-item other"><a href="">Ratings</a></b>
+                    <b class="price-quantity-other-grid-item other"><a href="">Gluten Free Options</a></b>
+                </div>
+            </div>
+            <!--This Edit option is only Visible only for Admin User-->
+
+            {% if request.session.role == "Admin" %}
+                <div class="edit-detail">
+                    <div class="edit-delete-buttons">
+                        <!--Toggle the edit form when clicked on edit button-->
+                        <button class="edit-item-detail button" onclick="toggleEditForm('{{ item_details.id }}')">
+                            Edit Item
+                        </button>
+                    </div>
+                    <!--Edit form to edit the Item details-->
+                    <div id="edit-form-{{ item_details.id }}" class="edit-form hidden">
+                        <form class="edit-form-title-price" method="post"
+                              action="{% url 'doucecravingsnew_app:edit_view' item_details.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="item_id" value="{{ item_details.id }}">
+                            <div class="form-text">
+                                <div class="form-input">
+                                    <input type="text" name="new_name" placeholder="New Title Name"
+                                           value="{{ item_details.title }}">
+                                    <input type="text" name="new_price" placeholder="New Price for Item"
+                                           value="{{ item_details.price }}">
+                                    <input type="text" name="description" placeholder="New Description"
+                                           value="{{ item_details.description }}">
+                                </div>
+                                <button type="submit" onclick="untoggleEditForm('{{ item_details.id }}')">Save
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="item-reviews">
+            {% if request.session.username %}
+                <form method="post">
+                    {% csrf_token %}
+                    <!-- Include the username in a hidden field -->
+                    <input type="hidden" name="username" value="{{ request.session.username }}">
+                    <textarea name="comment_text" placeholder="Add your comment" required></textarea>
+                    <button type="submit">Add Comment</button>
+                </form>
+            {% endif %}
+            <h3>Comments</h3>
+
+            {% if comments %}
+        <div class="comment-list">
+            {% for comment in comments %}
+                <div class="comment-card">
+                    <div class="comment-info">
+                        <a href="{% url 'users:user_details' username=comment.user.username %}">
+                            {{ comment.user.username }}
+                        </a> - {{ comment.timestamp|date:"F d, Y H:i" }}
+                    </div>
+                    <div class="comment-content">
+                        <p>{{ comment.comment_text }}</p>
+                    </div>
+                    {% if request.session.username == comment.user.username or request.session.role == 'Admin' %}
+                        <div class="comment-actions">
+                            <a href="{% url 'doucecravingsnew_app:edit_comment' comment.id %}">Edit</a>
+                            <a href="{% url 'doucecravingsnew_app:delete_comment' comment.id %}">Delete</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No comments yet.</p>
+    {% endif %}
+        </div>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/item-details.js" %}"></script>
+    <script src="{% static "js/list.js" %}"></script>
+{% endblock %}

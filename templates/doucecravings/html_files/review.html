@@ -1,0 +1,40 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+{% block page-title %} List of Items {% endblock %}
+{% block content %}
+
+    <div class="reviews">
+        <h2 class="review-title">Tell us about your experience...</h2>
+
+        <div class="text-review">
+            <form>
+                <textarea class="text-area" id="user-review" placeholder="Write a Review" rows="6"
+                          cols="50"></textarea>
+            </form>
+            <p>This is for feedback on our website only.</p>
+            <p>Need help with an order? <a href="">Contact us.</a></p>
+        </div>
+
+        <div class="submit-cancel-clear-buttons">
+            <button type="submit" id="submit-button-review" class="button"
+                    data-ajax_url="{% url 'doucecravingsnew_app:submit_review' %}">Submit
+            </button>
+            <button class="button">Clear</button>
+            <button class="button">Cancel</button>
+        </div>
+        <div class="reviews-and-button">
+            <button id="toggle-reviews-button" class="reviews-dropdown">
+                All Reviews
+                <i class="fa-solid fa-square-caret-down"></i>
+            </button>
+            <div id="reviews-box">
+                <ul id="reviews-list" class="reviews-cont">
+                    <!-- Reviews will be added dynamically here using review.js JavaScript where the reviews are being fetched from database  -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/review.js" %}"></script>
+{% endblock %}

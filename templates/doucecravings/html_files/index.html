@@ -1,0 +1,48 @@
+{% extends "doucecravings/base.html" %}
+{% load static %}
+{% block page-title %} Home Page {% endblock %}
+{% block content %}
+    <!--This message is only for logged in users-->
+    <div class="user-msg">
+        {% if request.session.username %}
+            <h3>Welcome Back! {{ request.session.username }}</h3>
+        {% else %}
+            <h3>Login to order your favourites!</h3>
+        {% endif %}
+    </div>
+    <!--Slideshow for home page-->
+    <div class="slideshow-container">
+        {% for slide in slides %}
+            <div class="mySlides fade">
+                <img src="{% static slide.slide_image %}" alt="cookie-baking">
+                <div class="hero-text">
+                    <div class="text">Every day is an opportunity to celebrate
+                        <a class="button" href="{% url 'doucecravingsnew_app:list_of_items' %}">ORDER NOW </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!--Previous and next buttons-->
+        <div class="navigation">
+            <a class="prev">❮</a>
+            <a class="next">❯</a>
+        </div>
+    </div>
+    <div class="dots-container">
+    </div>
+
+    <!--Recommended Items code- Content in Boxes-->
+    <div class="best-sellers">
+        <h2>Best Sellers</h2>
+    </div>
+    <div class="recommended-items-boxes">
+        {% for box in best_sellers %}
+            <div class="box">
+                <img class="box-image" src="{% static box.box_image %}" alt="{{ box.box_name }}">
+                <h3 class="box-text">{{ box.box_name }}</h3>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/index.js" %}"></script>
+{% endblock %}
